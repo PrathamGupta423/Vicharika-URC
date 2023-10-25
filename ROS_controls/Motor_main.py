@@ -1,9 +1,7 @@
 import rospy
 from std_msgs.msg import String
+from Inverse_library import inverse_kinematics
 
-
-def IK(x,y,z,t1,t2,t3,gripper):
-    pass
 
 rospy.init_node('Robotic_Arm', anonymous=False)  # Initialize the ROS node with a name 'motor_Control'
 
@@ -62,17 +60,16 @@ while True :
         # Standardise message as : "<x>*<y>*<z>*<t1>*<t2>*<t3>*<gripper>"
         prev_Instructions = Instructions
         Instructions = Instructions.split("*")
-        x = Instructions[0]
-        y = Instructions[1]
-        z = Instructions[2]
-        t1 = Instructions[3]
-        t2 = Instructions[4]
-        t3 = Instructions[5]
-        gripper = Instructions[6]
+        # x = Instructions[0]
+        # y = Instructions[1]
+        # z = Instructions[2]
+        # t1 = Instructions[3]
+        # t2 = Instructions[4]
+        # t3 = Instructions[5]
+        # gripper = Instructions[6]
         # Do something with the Instructions
 
-        out_message = IK(x,y,z,t1,t2,t3,gripper).split("*")  # output of form : standardise message as : "<motor_id>*<target position>*<kp>*<ki>*<kd>"
-
+        out_message = inverse_kinematics(Instructions)  # output of form : standardise message as : "<motor_id>*<target position>*<kp>*<ki>*<kd>"
         #split out_message into motor_id, target, position, kp, ki, kd
 
         motor_id = out_message[0]
