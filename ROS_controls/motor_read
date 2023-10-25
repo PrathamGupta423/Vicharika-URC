@@ -1,0 +1,24 @@
+import rospy
+from std_msgs.msg import String
+
+def reader_id_callback(data):
+    global Beta
+    Beta = data.data
+    # Do something with the reader_id string
+
+def motor_read():
+    rospy.init_node('motor_read', anonymous=True)
+    rospy.Subscriber('reader_id', String, reader_id_callback)
+    rospy.spin()
+
+if __name__ == '__main__':
+    Beta = ""
+    motor_read()
+    while True:
+        if Beta != "":
+            print(Beta)
+            Beta = ""
+
+
+
+

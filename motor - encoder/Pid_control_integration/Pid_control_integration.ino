@@ -162,7 +162,7 @@ ros::Subscriber<std_msgs::String> motorSetupSub("motor_setup", &motorSetupCallba
 
 
 void setup() {
-    nh.initNode();
+    ros::NodeHandle nh("Robotic_Arm"); // join an existing node with the name "~"
     nh.subscribe(motormoveSub);
     nh.subscribe(motorSetupSub);
 }
