@@ -26,7 +26,9 @@ class Motor {
       pinMode(pwm, OUTPUT);
       pinMode(in1, OUTPUT);
       pinMode(in2, OUTPUT);
-      attachInterrupt(digitalPinToInterrupt(encB), Motor::readEncoder, RISING);
+      attachInterrupt(digitalPinToInterrupt(encB), Motor::readEncoder, RISING); //expected type for attachinterrupt
+      //expected output type of digitalPinToInterrupt is int
+      //expected input type of attachInterrupt is void (*)(void)
     }
 
     void setMotor(int dir, int pwmVal) {
